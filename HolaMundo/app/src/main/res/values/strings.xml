@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Mi primer app</string>
+    <string name="saludo">Hola...</string>
+    <!--main Activity-->
+    <string name="mensaje_error">Este campo es Obligatorio</string>
+    <string name="tv_titulo">APP de Figuas</string>
+    <string name="tv_titulo_t">Tríangulo</string>
+    <string name="tv_titulo_r">Rectangulo</string>
+    <string name="et_dato_t_1">Escribe la base del Tríangulo</string>
+    <string name="et_dato_t_2">Escribe la altura del Tríangulo</string>
+    <string name="et_dato_r_1">Escribe la base del Rectángulo</string>
+    <string name="et_dato_r_2">Escribe la altura del Rectángulo</string>
+    <string name="btn_t">Calcular Área</string>
+    <string name="mensaje_error_numerico">El dato es incorrecto</string>
+    <string name="btn_h">Ir a otra Activity</string>
+    <!--segunda Activity-->
+    <string name="tv_titulo_2">APP de Figuas Segunda Activity</string>
+    <string name="tv_titulo_h">Hipotenusa</string>
+    <string name="et_dato_h_1">Escribe el cateto B</string>
+    <string name="et_dato_h_2">Escribe el cateto C</string>
+    <string name="btn_h_calcular">Calcular Hipotenusa</string>
+    <string name="btn_h_limpiar">Limpiar</string>
+</resources>
