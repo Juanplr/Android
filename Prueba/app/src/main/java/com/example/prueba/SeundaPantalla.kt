@@ -3,13 +3,11 @@ package com.example.prueba
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.prueba.databinding.ActivityMainBinding
+
 import com.example.prueba.databinding.ActivitySeundaPantallaBinding
 
 class SeundaPantalla : AppCompatActivity() {
@@ -31,6 +29,7 @@ class SeundaPantalla : AppCompatActivity() {
             else
                 bindig.etUrl.setError(getString(R.string.mensaje_error))
         }
+        configurarSpinnerArreglo()
     }
     fun validar():Boolean{
         return bindig.etUrl.text.isNotEmpty()
@@ -56,5 +55,18 @@ class SeundaPantalla : AppCompatActivity() {
         aertaAcercaDe.setCancelable(false)
         val dialogo = aertaAcercaDe.create()
         dialogo.show()
+    }
+    fun configurarSpinnerRecurso(){
+        ArrayAdapter.createFromResource(this@SeundaPantalla, R.array.opciones_intent,android.R.layout.simple_spinner_item).also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            bindig.opcionesIntent.adapter = it
+        }
+
+    }
+    fun configurarSpinnerArreglo(){
+        val opcionesIntent = arrayOf("Sitio Web","LLamada Telefonica","Envio de correo")
+        val adapterCadena = ArrayAdapter<String>(this@SeundaPantalla, android.R.layout.simple_spinner_item,opcionesIntent)
+        adapterCadena.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        bindig.opcionesIntent.adapter = adapterCadena
     }
 }

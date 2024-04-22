@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opciones_intent">
+        <item>Sitio web</item>
+        <item>Llamada telefonnica</item>
+        <item>Envio Telefonico</item>
+    </string-array>
+</resources>
