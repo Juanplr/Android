@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.View.OnKeyListener
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -15,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.prueba.databinding.ActivityDetalleBinding
 
 
-class DetalleActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class DetalleActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
     private lateinit var bindig: ActivityDetalleBinding
     var nombre: String? =""
     var tipoIntent: Int = -1
@@ -50,13 +52,28 @@ class DetalleActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
             0-> {
                 if (!continenLaRuta(url))
                     url ="https://" +url
+                val uriConten = Uri.parse(url)
+                val intent = Intent(Intent.ACTION_VIEW, uriConten)
+                startActivity(intent)
             }
-            1-> url ="tel: "+ url
-            2-> url ="mailto" + url
+            1->{
+                url ="tel: "+ url
+                val uriConten = Uri.parse(url)
+                val intent = Intent(Intent.ACTION_VIEW, uriConten)
+                startActivity(intent)
+            }
+            2-> {
+                if(esvalidoelCorreo(url)) {
+                    url ="mailto:" + url
+                    val uriConten = Uri.parse(url)
+                    val intent = Intent(Intent.ACTION_VIEW, uriConten)
+                    startActivity(intent)
+                }
+                else
+                    bindig.etUrl.setError("Correo Elecronico no valido")
+
+            }
         }
-        val uriConten = Uri.parse(url)
-        val intent = Intent(Intent.ACTION_VIEW, uriConten)
-        startActivity(intent)
     }
     fun abrirDialogoAcercaDe(){
         val aertaAcercaDe = AlertDialog.Builder(this@DetalleActivity)
@@ -100,6 +117,8 @@ class DetalleActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
             0->{
                 bindig.etUrl.hint = "Ingresa la URL"
                 bindig.btnVerWeb.text = "Ir a sitio web"
+                bindig.etUrl.inputType = InputType.TYPE_CLASS_TEXT
+                bindig.etUrl.filters = arrayOf()
             }
             1->{
                 bindig.etUrl.hint = "Ingresa el numero Telefonico"
@@ -110,6 +129,8 @@ class DetalleActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
             2->{
                 bindig.etUrl.hint = "Ingresa el correo"
                 bindig.btnVerWeb.text = "Enviar Correo Electronico"
+                bindig.etUrl.inputType = InputType.TYPE_CLASS_TEXT
+                bindig.etUrl.filters = arrayOf()
             }
             else ->{
 
@@ -128,4 +149,12 @@ class DetalleActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         }
         return bandera
     }
+    fun esvalidoelCorreo(email: String): Boolean {
+        val emailPattern = Regex(
+            pattern = "^[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        )
+        return emailPattern.matches(email)
+    }
+
+
 }
