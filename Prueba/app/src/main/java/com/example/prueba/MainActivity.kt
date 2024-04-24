@@ -2,14 +2,9 @@ package com.example.prueba
 
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager.OnActivityDestroyListener
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.DragStartHelper.OnDragStartListener
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.prueba.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -57,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("Ciclo", "onDestroy")
     }
     fun iraSegundaAcatividad(){
-        val intent = Intent(this@MainActivity, SeundaPantalla::class.java)
+        val intent = Intent(this@MainActivity, DetalleActivity::class.java)
         val nombre = bindig.etCampoTBase.text.toString()
         intent.putExtra("saludo", nombre)
         startActivity(intent)
