@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tw_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Notas de Dia"
+        android:textSize="22sp"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:id="@+id/lineal_titulo"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tw_titulo"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_titulo_nota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:hint="Titulo de la nota"/>
+        <EditText
+            android:id="@+id/et_contenido_nota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:hint="Contenido de la nota"/>
+
+        <Button
+            android:id="@+id/btn_guardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:text="Guardar nota"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_divisor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/lineal_titulo"
+        android:layout_marginTop="18dp"
+        android:background="#BABABA"/>
+
+    <TextView
+        android:id="@+id/tv_mis_notas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_divisor"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Mis notas"/>
+    <TextView
+        android:id="@+id/tv_notas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="prueba"
+        android:layout_below="@id/tv_mis_notas"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+</RelativeLayout>
