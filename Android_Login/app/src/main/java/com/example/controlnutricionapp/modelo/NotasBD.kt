@@ -64,4 +64,21 @@ class NotasBD(contexto:Context) : SQLiteOpenHelper(contexto, NOMBRE_BD, null, VE
         db.close()
         return  misNotas
     }
+
+    fun actualizarNota(nota:Nota):Int{
+        val db = writableDatabase
+        val valoresUpdate = ContentValues().apply {
+            put(COL_TITULO,nota.titulo)
+            put(COL_CONTENIDO,nota.contenido)
+        }
+        val filasA = db.update(NOMBRE_TABLA,valoresUpdate,"$COL_ID = ? ", arrayOf(nota.idNota.toString()))
+        db.close()
+        return filasA
+    }
+    fun eliminarNota(idNota:Int):Int{
+        val db = writableDatabase
+        val filasA = db.delete(NOMBRE_TABLA,"$COL_ID = ? ", arrayOf(idNota.toString()))
+        db.close()
+        return filasA
+    }
 }
