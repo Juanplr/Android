@@ -1,5 +1,6 @@
 package com.example.controlnutricionapp.modelo
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -23,8 +24,8 @@ class NotasBD(contexto:Context) : SQLiteOpenHelper(contexto, NOMBRE_BD, null, VE
         val CREATE_TABLE_NOTAS = ("CREATE TABLE $NOMBRE_TABLA" +
                 "($COL_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COL_TITULO TEXT, " +
-                "$COL_CONTENIDO TEXR, " +
-                "$COL_ID_USUARIO INTEGER)")
+                "$COL_CONTENIDO TEXT, " +
+                "$COL_ID_USUARIO TEXT)")
         db!!.execSQL(CREATE_TABLE_NOTAS)
     }
 
@@ -42,18 +43,25 @@ class NotasBD(contexto:Context) : SQLiteOpenHelper(contexto, NOMBRE_BD, null, VE
         db.close()
         return filas
     }
+    @SuppressLint("Range")
     fun seleccionarNotas(): List<Nota>{
         val misNotas = mutableListOf<Nota>()
         val db = readableDatabase
         val resultadoConsulta: Cursor? = db.query(NOMBRE_TABLA,null,null,null,null,null,null)
         if(resultadoConsulta!=null){
             while (resultadoConsulta.moveToNext()){
-                val idNota = resultadoConsulta.getInt(resultadoConsulta.getColumnIndex(COL_ID))
-                val titulo = resultadoConsulta.getString()
-                val contenido =
-                val idUsuario =
+                val idNota = resultadoConsulta.getLong(resultadoConsulta.getColumnIndex(COL_ID))
+                val titulo = resultadoConsulta.getString(resultadoConsulta.getColumnIndex(COL_TITULO))
+                val contenido = resultadoConsulta.getString(resultadoConsulta.getColumnIndex(
+                    COL_CONTENIDO))
+                val idUsuario = resultadoConsulta.getString(resultadoConsulta.getColumnIndex(
+                    COL_ID_USUARIO))
+                val nota = Nota(idNota,titulo,contenido,idUsuario)
+                misNotas.add(nota)
             }
+            resultadoConsulta.close()
         }
-
+        db.close()
+        return  misNotas
     }
 }

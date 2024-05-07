@@ -2,6 +2,7 @@ package com.example.controlnutricionapp
 
 import android.os.Bundle
 import android.content.*
+import android.util.Log
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
 
-        setContentView(R.layout.activity_login)
+        setContentView(binding.root)
         cargarCredenciales()
         binding.btnIngresar.setOnClickListener {
             verificarCredenciales()
@@ -62,15 +63,14 @@ class LoginActivity : AppCompatActivity() {
     fun verificarCredenciales(){
 
         val correo = binding.etCorreo.text.toString()
-        val password = binding.etCorreo.text.toString()
-        if (correo.equals(Constantes.USERNAME1) && password.equals(Constantes.PASSWORD1) ||
-                (correo.equals(ConstantesEstatico.USERNAME2) && password.equals(ConstantesEstatico.PASSWORD2))) {
+        val password = binding.etContraseA.text.toString()
+        if (correo == Constantes.USERNAME1 && password ==Constantes.PASSWORD1) {
                     if(binding.cdRecordarCuenta.isChecked)
                         guardarCredenciales(correo, password,true)
                     else
                         guardarCredenciales("","",false)
 
-                    irPantallaPrincipal()
+                    irPantallaPrincipal(correo)
             mostrarToast("Bienvenido a tu Hola mundo")
         }else{
             mostrarToast("Usuario y/o Contraseña incorrestos")
@@ -81,8 +81,9 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 
-    fun irPantallaPrincipal(){
+    fun irPantallaPrincipal(username:String){
         val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("userName",username)
         startActivity(intent)
         finish()
     }

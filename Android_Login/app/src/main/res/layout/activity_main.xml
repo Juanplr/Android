@@ -65,7 +65,6 @@
         android:id="@+id/tv_notas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="prueba"
         android:layout_below="@id/tv_mis_notas"
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
