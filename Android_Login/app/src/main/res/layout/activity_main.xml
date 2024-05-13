@@ -22,33 +22,79 @@
         android:layout_below="@id/tw_titulo"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <EditText
+        <!-- <EditText
             android:id="@+id/et_id_nota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
-            android:hint="Id de la nota"/>/>
+            android:hint="Id de la nota"
+            android:inputType="number"/>
+         -->
         <EditText
             android:id="@+id/et_titulo_nota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
-            android:hint="Titulo de la nota"/>
+            android:hint="Titulo de la nota"
+            android:inputType="text"/>
         <EditText
             android:id="@+id/et_contenido_nota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
-            android:hint="Contenido de la nota"/>
+            android:hint="Contenido de la nota"
+            android:inputType="text"/>
 
-        <Button
-            android:id="@+id/btn_guardar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="24dp"
-            android:text="Guardar nota"/>
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:text="Guardar nota"/>
+            <!-- <Button
+                android:id="@+id/btn_actualizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:text="Actualizar Nota"
+                android:layout_toRightOf="@id/btn_guardar"
+                />
+            -->
+
+            <!-- <EditText
+                android:id="@+id/et_eliminar_nota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_guardar"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="18dp"
+                android:hint="Id de la nota"
+                android:inputType="number" />
+             -->
+            <!--<Button
+                android:id="@+id/btn_eliminar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:text="Eliminar Nota"
+                android:layout_toEndOf="@id/et_eliminar_nota"
+                android:layout_alignBottom="@id/et_eliminar_nota"
+                />
+                -->
+        </RelativeLayout>
     </LinearLayout>
 
     <View
@@ -67,13 +113,30 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Mis notas"/>
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_notas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_mis_notas"
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_notas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_mis_notas"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"/>
+    <TextView
+        android:id="@+id/tv_mensaje_nota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_mis_notas"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="Por el Momento no tienes notas Guardadas"
+        />
 
 </RelativeLayout>

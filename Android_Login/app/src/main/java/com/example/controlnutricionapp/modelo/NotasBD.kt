@@ -65,6 +65,29 @@ class NotasBD(contexto:Context) : SQLiteOpenHelper(contexto, NOMBRE_BD, null, VE
         return  misNotas
     }
 
+    @SuppressLint("Range")
+    fun seleccionarNotasPorUsuario(idUsuario:String): List<Nota>{
+        val misNotas = mutableListOf<Nota>()
+        val db = readableDatabase
+        val resultadoConsulta: Cursor? = db.query(NOMBRE_TABLA,null,"$COL_ID_USUARIO = ?",
+            arrayOf(idUsuario),null,null,null)
+        if(resultadoConsulta!=null){
+            while (resultadoConsulta.moveToNext()){
+                val idNota = resultadoConsulta.getLong(resultadoConsulta.getColumnIndex(COL_ID))
+                val titulo = resultadoConsulta.getString(resultadoConsulta.getColumnIndex(COL_TITULO))
+                val contenido = resultadoConsulta.getString(resultadoConsulta.getColumnIndex(
+                    COL_CONTENIDO))
+                val idUsuario = resultadoConsulta.getString(resultadoConsulta.getColumnIndex(
+                    COL_ID_USUARIO))
+                val nota = Nota(idNota,titulo,contenido,idUsuario)
+                misNotas.add(nota)
+            }
+            resultadoConsulta.close()
+        }
+        db.close()
+        return  misNotas
+    }
+
     fun actualizarNota(nota:Nota):Int{
         val db = writableDatabase
         val valoresUpdate = ContentValues().apply {
@@ -75,7 +98,7 @@ class NotasBD(contexto:Context) : SQLiteOpenHelper(contexto, NOMBRE_BD, null, VE
         db.close()
         return filasA
     }
-    fun eliminarNota(idNota:Int):Int{
+    fun eliminarNota(idNota:Long):Int{
         val db = writableDatabase
         val filasA = db.delete(NOMBRE_TABLA,"$COL_ID = ? ", arrayOf(idNota.toString()))
         db.close()
