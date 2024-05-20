@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "438845587236",
+    "project_id": "control-nutricional-528d8",
+    "storage_bucket": "control-nutricional-528d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438845587236:android:cf0771312c43f4aa1e7db1",
+        "android_client_info": {
+          "package_name": "com.example.controlnutricionapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTe8nVL6z8ndO5K4Hyxlf1NcfmloRwRRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

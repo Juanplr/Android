@@ -82,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun irPantallaPrincipal(username:String){
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this,OpcionesActivity2::class.java)
         intent.putExtra("userName",username)
         startActivity(intent)
         finish()
